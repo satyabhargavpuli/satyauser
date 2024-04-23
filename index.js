@@ -5,8 +5,8 @@ const session = require('express-session')
 
 
 //get schemas
-const User = require('./schemas/newUser');
-const todo = require('./schemas/oldUser');
+const User = require('./newUser');
+const todo = require('./oldUser');
 
 
 const app = express();
@@ -14,7 +14,7 @@ const port = 5500;
 
 
 //DB connection
-const {mongoURI , options} = require('./api/key')
+const {mongoURI , options} = require('./key')
 mongoose.connect(mongoURI, options).then(() => console.log("success")).catch(err => console.log("failure", err))
 
 
@@ -29,17 +29,17 @@ app.use(session({
 }));
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/screens');
+app.set('views', __dirname + '/');
 
 
 // this will connect registration page 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/screens/registration.html');
+    res.sendFile(__dirname + '/registration.html');
 });
 
 // connectinng login page
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/screens/login.html');
+    res.sendFile(__dirname + '/login.html');
 })
 
 //routes
