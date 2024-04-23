@@ -95,7 +95,7 @@ app.post('/register', async(req, res) => {
     catch (e) 
     {
         console.log(e);
-        res.status(500).send('server error');
+        res.status(500).send(e);
     }
 });
 
